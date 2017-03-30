@@ -13,8 +13,8 @@ int main() {
 	// TEST 0
 	// all filenames and languages empty
     {
-    	srcml_request request = { "", "test.cpp", "", ""};
-    	assert(request_filename(request) == "test.cpp");
+    	srcml_request request = { "", "", "", ""};
+    	assert(request_filename(request) == "");
     	assert(request_language(request, "") == "");
     }
 	
@@ -23,7 +23,7 @@ int main() {
 	// TEST 1
 	{
     	srcml_request request = { "", "", "", ""};
-    	assert(request_filename(request) == "test.cpp");
+    	assert(request_filename(request) == "");
     	assert(request_language(request, "") == "");
     }
 	
@@ -31,17 +31,17 @@ int main() {
 	// the literal string “data”, and you should use the local_filename
 	// TEST 2
 	{
-    	srcml_request request = { "", "test.cpp", "", ""};
+    	srcml_request request = { "", "test.cpp", "data", ""};
     	assert(request_filename(request) == "test.cpp");
-    	assert(request_language(request, "") == "");
+    	assert(request_language(request, "test.cpp") == "C++");
     }
 	
 	// The filename can be explicitly given as an option (option_filename)
 	// and this supersedes all other filenames
 	// TEST 3
 	{
-    	srcml_request request = { "", "", "", ""};
-    	assert(request_filename(request) == "");
+    	srcml_request request = { "test.cpp", "test2.zip", "main.cpp", "C++"};
+    	assert(request_filename(request) == "test.cpp");
     	assert(request_language(request, "") == "");
     }
 	
