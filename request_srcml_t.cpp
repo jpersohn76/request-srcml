@@ -58,15 +58,15 @@ int main() {
 	// and this supersedes all other language settings
 	// TEST 5
 	{
-    	srcml_request request = { "", "", "", ""};
-    	assert(request_filename(request) == "");
-    	assert(request_language(request, "") == "");
+    	srcml_request request = { "", "test.cpp", "data", "C++"};
+    	assert(request_filename(request) == "test.cpp");
+    	assert(request_language(request, "test.cpp") == "C++");
     }
 	
 	//	The local_filename is a single dash “-” when the input is from stdin (i.e., standard input, e.g., std::cin). In this case, the option_filename and entry_filename must be used. Note that the entry_filename is not valid (i.e, “data”) for a non source code archive, and the option_filename must be used. If the option_filename is blank (i.e., “”), then the resulting filename is blank, and the language is based on the option_language.
 	//	TEST 6
 	{
-    	srcml_request request = { "", "", "", ""};
+    	srcml_request request = { "", "-", "data", ""};
     	assert(request_filename(request) == "");
     	assert(request_language(request, "") == "");
     }
