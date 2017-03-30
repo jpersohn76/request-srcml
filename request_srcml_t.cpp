@@ -24,7 +24,7 @@ int main() {
 	{
     	srcml_request request = { "", "code.tar.gz", "test.cpp", ""};
     	assert(request_filename(request) == "test.cpp");
-    	assert(request_language(request, "test.cpp") == "C++");
+    	assert(request_language(request, "") == "");
     }
 	
 	// For a plain old file, e.g., file.cpp, the entry_filename is
@@ -33,25 +33,25 @@ int main() {
 	{
     	srcml_request request = { "", "test.cpp", "data", ""};
     	assert(request_filename(request) == "test.cpp");
-    	assert(request_language(request, "test.cpp") == "C++");
+    	assert(request_language(request, "") == "");
     }
 	
 	// The filename can be explicitly given as an option (option_filename)
 	// and this supersedes all other filenames
 	// TEST 3
 	{
-    	srcml_request request = { "test.cpp", "test2.zip", "main.cpp", "C++"};
+    	srcml_request request = { "test.cpp", "test2.zip", "main.cpp", ""};
     	assert(request_filename(request) == "test.cpp");
-    	assert(request_language(request, "test.cpp") == "C++");
+    	assert(request_language(request, "") == "");
     }
 	
 	// The language is based on the file extension, 
 	// e.g., .cpp and .hpp are C++ files. The function get_language_from_filename() is used for this.
 	// TEST 4
 	{
-    	srcml_request request = { "", "", "", ""};
-    	assert(request_filename(request) == "");
-    	assert(request_language(request, "") == "");
+    	srcml_request request = { "", "test.cpp", "data", ""};
+    	assert(request_filename(request) == "test.cpp");
+    	assert(request_language(request, "test.cpp") == "C++");
     }
 	
 	// The language can be explicitly given as an option (option_language)

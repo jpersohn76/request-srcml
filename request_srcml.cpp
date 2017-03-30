@@ -12,7 +12,7 @@ std::string request_filename(const srcml_request& request) {
 
 	std::string filename;
 	
-	if (request.option_filename != "") 
+	if (request.option_filename != "")  // TEST 2
 	{
 		filename = request.option_filename;
 		return filename;
