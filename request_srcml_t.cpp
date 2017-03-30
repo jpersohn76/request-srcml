@@ -42,7 +42,7 @@ int main() {
 	{
     	srcml_request request = { "test.cpp", "test2.zip", "main.cpp", "C++"};
     	assert(request_filename(request) == "test.cpp");
-    	assert(request_language(request, "") == "");
+    	assert(request_language(request, "test.cpp") == "C++");
     }
 	
 	// The language is based on the file extension, 
