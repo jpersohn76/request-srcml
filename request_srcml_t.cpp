@@ -22,9 +22,9 @@ int main() {
 	// For a source-code archive (e.g., file.tar.gz, file.zip, etc.) the entry_filename is used instead.
 	// TEST 1
 	{
-    	srcml_request request = { "", "", "", ""};
-    	assert(request_filename(request) == "");
-    	assert(request_language(request, "") == "");
+    	srcml_request request = { "", "code.tar.gz", "test.cpp", ""};
+    	assert(request_filename(request) == "test.cpp");
+    	assert(request_language(request, "test.cpp") == "C++");
     }
 	
 	// For a plain old file, e.g., file.cpp, the entry_filename is
