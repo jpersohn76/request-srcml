@@ -62,13 +62,13 @@ void generate_srcml(const srcml_request& request) {
 
 	std::string filename = request_filename(request);
 	
-	if (filename == "-")
-		std::cout << "Using stdin requires a declared language" << "\n";
+	// if (filename == "-")
+		// std::cout << "Using stdin requires a declared language" << "\n";
 	
 	std::string language = request_language(request, filename);
 	
-	if (language == "")
-		std::cout << "Extension not supported" << "\n";
+	// if (language == "")
+		// std::cout << "Extension not supported" << "\n";
 
 	// srcML generation code that is not available yet
 }
