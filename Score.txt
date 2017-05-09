@@ -1,0 +1,33 @@
+Score: 83
+
+* Sometimes the resulting filename is returned. Other times it isn't. Why? -3
+* Why a commented-out call to generate_srcml()) in the function request_language()? -2
+* Filename can be "-" (indicating from standard input), but a language could be given. Logic wrong in generate_srcml() -2
+* Does not compile: It is std::cerr, not std::err. -10
+
+Build and test results:
+g++ -c request_srcml_t.cpp
+g++ -c request_srcml.cpp
+request_srcml.cpp:58:1: warning: control may reach end of non-void function [-Wreturn-type]
+}
+^
+request_srcml.cpp:66:8: error: no member named 'err' in namespace 'std'; did you mean 'cerr'?
+                std::err << "Using stdin requires a declared language" << "\n";
+                ~~~~~^~~
+                     cerr
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:57:33: note: 'cerr' declared here
+extern _LIBCPP_FUNC_VIS ostream cerr;
+                                ^
+request_srcml.cpp:72:8: error: no member named 'err' in namespace 'std'; did you mean 'cerr'?
+                std::err << "Extension not supported" << "\n";
+                ~~~~~^~~
+                     cerr
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:57:33: note: 'cerr' declared here
+extern _LIBCPP_FUNC_VIS ostream cerr;
+                                ^
+1 warning and 2 errors generated.
+make: *** [request_srcml.o] Error 1
+
+My request_srcml_t.cpp file used for testing your code, along with several implementations of request_filename() and request_language(), can be found at:
+
+	https://gist.github.com/mlcollard/7e499f064a3b4d637b5369fae08cb201
